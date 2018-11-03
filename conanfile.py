@@ -5,10 +5,8 @@ import os
 class Geolite2Conan(ConanFile):
     name = "geolite2++"
     version = "0.0.1-2561"
-    author = "<Put your name here> <And your email here>"
-    url = "<Package recipe repository url here, for issues about the package>"
-    description = "<Description of Geolite2 here>"
-    topics = ("<Put some tag here>", "<here>", "<and here>")
+    url = "https://github.com/monkeber/conan-geolite2pp"
+    description = "C++ API for MaxMind's GeoLite2 Database"
     settings = "os", "compiler", "build_type", "arch"
     requires = "maxminddb/1.3.2@monkeber/stable"
     generators = "cmake"
