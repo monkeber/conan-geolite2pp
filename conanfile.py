@@ -10,6 +10,7 @@ class Geolite2Conan(ConanFile):
     settings = "os", "compiler", "build_type", "arch"
     requires = "maxminddb/1.3.2@monkeber/stable"
     generators = "cmake"
+    build_policy = "missing"
 
     def source(self):
         tools.download("https://www.ccoderun.ca/GeoLite2PP/download" \
