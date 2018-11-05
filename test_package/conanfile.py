@@ -16,9 +16,6 @@ class Geolite2TestConan(ConanFile):
         cmake.build()
 
     def imports(self):
-        self.copy("*.dll", dst="bin", src="bin")
-        self.copy("*.dylib*", dst="bin", src="lib")
-        self.copy("*.so*", dst="bin", src="lib")
         self.copy("*.mmdb", dst="bin", src="bin")
 
     def test(self):
