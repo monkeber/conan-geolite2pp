@@ -3,7 +3,7 @@ import os
 
 
 class Geolite2Conan(ConanFile):
-    name = "geolite2++"
+    name = "geolite2pp"
     version = "0.0.1-2561"
     url = "https://github.com/monkeber/conan-geolite2pp"
     description = "C++ API for MaxMind's GeoLite2 Database"
