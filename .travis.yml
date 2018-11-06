@@ -20,7 +20,6 @@ install:
   - pip install --user conan --upgrade
   - pip install --user conan_package_tools
   - conan user
-  - docker run bash -c "conan remote add monkeber https://api.bintray.com/conan/monkeber/monkeber"
 
 script:
   python build.py
