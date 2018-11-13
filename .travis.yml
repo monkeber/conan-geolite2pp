@@ -1,13 +1,11 @@
 env:
   global:
     - CONAN_USERNAME: "monkeber"
-    - CONAN_REFERENCE: "geolite2++/0.0.1-2561"
+    - CONAN_REFERENCE: "geolite2pp/0.0.1-2561"
     - CONAN_REMOTE: "monkeber"
     - CONAN_CHANNEL: "stable"
-    - CONAN_GCC_VERSIONS: 8
-    - CONAN_DOCKER_IMAGE: "lasote/conangcc8"
 
-linux:
+linux: &linux
   os: linux
   sudo: required
   language: python
@@ -15,11 +13,27 @@ linux:
   services:
     - docker
 
+matrix:
+  include:
+    - <<: *linux
+      env: CONAN_GCC_VERSIONS=5 CONAN_DOCKER_IMAGE=lasote/conangcc5
+
+    - <<: *linux
+      env: CONAN_GCC_VERSIONS=6 CONAN_DOCKER_IMAGE=lasote/conangcc6
+
+    - <<: *linux
+      env: CONAN_GCC_VERSIONS=7 CONAN_DOCKER_IMAGE=lasote/conangcc7
+
+    - <<: *linux
+      env: CONAN_GCC_VERSIONS=8 CONAN_DOCKER_IMAGE=lasote/conangcc8
+
+
 install:
   - python -m pip install --user --upgrade pip
   - pip install --user conan --upgrade
   - pip install --user conan_package_tools
   - conan user
+  - conan remote add monkeber https://api.bintray.com/conan/monkeber/monkeber
 
 script:
   python build.py

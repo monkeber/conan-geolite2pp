@@ -39,4 +39,6 @@ class Geolite2Conan(ConanFile):
 
     def package_info(self):
         self.cpp_info.libs = ["geolite2++"]
+        if self.settings.os == "Linux":
+            self.cpp_info.libs.append("pthread")
 
