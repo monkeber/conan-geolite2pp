@@ -29,9 +29,8 @@ matrix:
 
 
 install:
-  - python -m pip install --user --upgrade pip
-  - pip install --user conan --upgrade
-  - pip install --user conan_package_tools
+  - pip install conan --upgrade
+  - pip install conan_package_tools
   - conan user
   - conan remote add monkeber https://api.bintray.com/conan/monkeber/monkeber
 
