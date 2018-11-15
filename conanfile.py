@@ -22,6 +22,14 @@ class Geolite2Conan(ConanFile):
         self.run("mv geolite2++-{}-Source geolite2++".format(self.version))
 
     def build(self):
+        pack_names = []
+        if tools.os_info.with_apt and self.settings.build_type == "Debug":
+            pack_names = ["libmaxminddb-dev"]
+
+        if pack_names:
+            installer = tools.SystemPackageTool()
+            installer.install(" ".join(pack_names))
+
         cmake = CMake(self)
         cmake.configure(source_folder="geolite2++")
         cmake.build()
@@ -35,10 +43,13 @@ class Geolite2Conan(ConanFile):
         if self.options.shared:
             self.copy("*.dll", dst="bin", keep_path=False)
             self.copy("*.so", dst="lib", keep_path=False)
+            self.copy("*.so.0", dst="lib", keep_path=False)
             self.copy("*.dylib", dst="lib", keep_path=False)
 
     def package_info(self):
-        self.cpp_info.libs = ["geolite2++"]
+        self.cpp_info.libs = ["geolite2++", "maxminddb"]
+        self.cpp_info.libdirs = ["lib"]
+        self.cpp_info.includedirs = ["include"]
         if self.settings.os == "Linux":
             self.cpp_info.libs.append("pthread")
 
