@@ -6,7 +6,7 @@ if __name__ == "__main__":
         "&& sudo apt-get -qq update && sudo apt-get -qq install -y libmaxminddb-dev"
     builder = ConanMultiPackager(docker_entry_script=command)
     builder.add(settings={'compiler.libcxx': 'libstdc++11', 'arch': 'x86',
-        'build_arch': 'x86', 'build_type': 'Release', 'compiler': 'gcc'})
+        'arch_build': 'x86', 'build_type': 'Release', 'compiler': 'gcc'})
     builder.add(settings={'compiler.libcxx': 'libstdc++11', 'arch': 'x86',
-        'build_arch': 'x86', 'build_type': 'Debug', 'compiler': 'gcc'})
+        'arch_build': 'x86', 'build_type': 'Debug', 'compiler': 'gcc'})
     builder.run()
