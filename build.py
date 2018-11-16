@@ -2,7 +2,8 @@ from conan.packager import ConanMultiPackager
 
 
 if __name__ == "__main__":
-    command = "conan remote add monkeber https://api.bintray.com/conan/monkeber/monkeber"
+    command = "conan remote add monkeber https://api.bintray.com/conan/monkeber/monkeber" \
+        "&& sudo apt-get -qq update && sudo apt-get -qq install -y libmaxminddb-dev"
     builder = ConanMultiPackager(docker_entry_script=command)
     builder.add_common_builds()
     builder.run()
