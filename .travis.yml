@@ -16,9 +16,6 @@ linux: &linux
 matrix:
   include:
     - <<: *linux
-      env: CONAN_GCC_VERSIONS=5 CONAN_DOCKER_IMAGE=lasote/conangcc5
-
-    - <<: *linux
       env: CONAN_GCC_VERSIONS=6 CONAN_DOCKER_IMAGE=lasote/conangcc6
 
     - <<: *linux
@@ -32,7 +29,6 @@ install:
   - pip install conan --upgrade
   - pip install conan_package_tools
   - conan user
-  - conan remote add monkeber https://api.bintray.com/conan/monkeber/monkeber
 
 script:
   python build.py
