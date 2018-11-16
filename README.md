@@ -17,7 +17,7 @@ If you on Arch Linux the you should install libmaxminddb library by yourself on 
 
 | Bintray | Linux |
 |:-----------:|:-------------------:|
-| [ ![Download](https://api.bintray.com/packages/monkeber/monkeber/geolite2%2B%2B%3Amonkeber/images/download.svg) ](https://bintray.com/monkeber/monkeber/geolite2%2B%2B%3Amonkeber/_latestVersion) |
+| [ ![Download](https://api.bintray.com/packages/monkeber/monkeber/geolite2%2B%2B%3Amonkeber/images/download.svg) ](https://bintray.com/monkeber/monkeber/geolite2%2B%2B%3Amonkeber/_latestVersion) | [![Build Status](https://travis-ci.org/monkeber/conan-geolite2pp.svg?branch=master)](https://travis-ci.org/monkeber/conan-geolite2pp)
 
 ### Basic setup
 
