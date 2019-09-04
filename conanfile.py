@@ -8,7 +8,7 @@ class Geolite2Conan(ConanFile):
     url = "https://github.com/monkeber/conan-geolite2pp"
     description = "C++ API for MaxMind's GeoLite2 Database"
     settings = "os", "compiler", "build_type", "arch"
-    requires = "maxminddb/1.3.2@monkeber/stable"
+    requires = "maxminddb/1.3.2@avantize/testing"
     generators = "cmake"
     build_policy = "missing"
     options = { "shared": [True, False] }
@@ -22,16 +22,18 @@ class Geolite2Conan(ConanFile):
         self.run("mv geolite2++-{}-Source geolite2++".format(self.version))
 
     def build(self):
-        pack_names = []
-        if tools.os_info.with_apt and self.settings.build_type == "Debug":
-            pack_names = ["libmaxminddb-dev"]
 
-        if pack_names:
-            installer = tools.SystemPackageTool()
-            installer.install(" ".join(pack_names))
+        args = list()
+        args.append("-DCMAKE_LIBRARY_PATH=%s" % self.deps_cpp_info["maxminddb"].lib_paths[0])
+        args.append(
+            "-DCMAKE_SYSTEM_INCLUDE_PATH=%s" % self.deps_cpp_info["maxminddb"].include_paths[0])
+        args.append("-DCMAKE_INCLUDE_PATH=%s" % self.deps_cpp_info["maxminddb"].include_paths[0])
+        args.append("-DCMAKE_CXX_FLAGS=-I%s/include"
+            % self.deps_cpp_info["maxminddb"].includedirs[0])
+        args.append("-DCMAKE_CXX_STANDARD=11")
 
         cmake = CMake(self)
-        cmake.configure(source_folder="geolite2++")
+        cmake.configure(source_folder="geolite2++", args=args)
         cmake.build()
 
     def package(self):
