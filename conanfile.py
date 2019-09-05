@@ -1,7 +1,6 @@
 from conans import ConanFile, CMake, tools
 import os
 
-
 class Geolite2Conan(ConanFile):
     name = "geolite2pp"
     version = "0.0.1-2561"
