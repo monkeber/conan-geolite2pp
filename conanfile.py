@@ -8,7 +8,7 @@ class Geolite2Conan(ConanFile):
     url = "https://github.com/monkeber/conan-geolite2pp"
     description = "C++ API for MaxMind's GeoLite2 Database"
     settings = "os", "compiler", "build_type", "arch"
-    requires = "maxminddb/1.3.2@avantize/testing"
+    requires = "maxminddb/1.3.2@monkeber/testing"
     generators = "cmake"
     build_policy = "missing"
     options = { "shared": [True, False] }
