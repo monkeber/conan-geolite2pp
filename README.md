@@ -3,16 +3,6 @@
 Conan package for [GeoLite2++](https://www.ccoderun.ca/GeoLite2PP/api/index.html).
 GeoLite2++ is C++ API for MaxMind's GeoLite2 Database.
 
-### Dependencies
-
-If you want to use this package in `Debug` mode, there are some implications:
-
-If you on the OS which uses `apt` tool as package manager then you are good, during install you may be prompted to give sudo rights in order to install 2 packages:
- - libmaxminddb0
- - libmaxminddb-dev
-
-If you on Arch Linux the you should install libmaxminddb library by yourself on your system, probably the same applies to Windows, building on windows is not tested at all.
-
 ### Package Status
 
 | Bintray | Linux |
