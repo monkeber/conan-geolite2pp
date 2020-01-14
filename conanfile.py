@@ -14,11 +14,7 @@ class Geolite2Conan(ConanFile):
     default_options = "shared=False"
 
     def source(self):
-        tools.download("https://www.ccoderun.ca/GeoLite2PP/download" \
-            "/geolite2++-{}-Source.tar.gz".format(self.version), "geolite2++.tar.gz")
-        tools.unzip("geolite2++.tar.gz")
-        os.unlink("geolite2++.tar.gz")
-        self.run("mv geolite2++-{}-Source geolite2++".format(self.version))
+        self.run("git clone git@gitlab.instacoins.com:instacoins/geolite2pp.git", "master")
 
     def build(self):
         args = list()
@@ -28,13 +24,11 @@ class Geolite2Conan(ConanFile):
         args.append("-DCMAKE_CXX_STANDARD=11")
 
         cmake = CMake(self)
-        cmake.configure(source_folder="geolite2++", args=args)
+        cmake.configure(source_folder="geolite2pp", args=args)
         cmake.build()
 
     def package(self):
-        self.run("cd geolite2++/scripts && ./geolite2pp_get_database.sh")
-        self.copy("*.mmdb", dst="bin", src="geolite2++/scripts")
-        self.copy("*.h*", dst="include", src="geolite2++/src-lib")
+        self.copy("*.h*", dst="include", src="geolite2pp/src-lib")
         if self.options.shared:
             self.copy("*.dll", dst="bin", keep_path=False)
             self.copy("*.so", dst="lib", src="src-lib", keep_path=False)
